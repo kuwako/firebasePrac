@@ -1,0 +1,133 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url 'http://dl.bintray.com/lukaville/maven' }
+}
+
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'realm-android'
+
+Properties settingsProperties = new Properties()
+settingsProperties.load(project.rootProject.file('settings.properties').newInputStream())
+def firebase_project_id = settingsProperties.getProperty('firebase_project_id')
+def twitter_key = settingsProperties.getProperty('twitter_key')
+def twitter_secret = settingsProperties.getProperty('twitter_secret')
+
+def package_name = 'us.shiroyama.android.firebaserealtimechat'
+
+def support_lib_version = '24.1.1'
+def firebase_lib_version = '9.4.0'
+def dagger_version = '2.5'
+def butter_knife_version = '8.2.1'
+def permissions_dispatcher_version = '2.1.3'
+
+def version_major = 1
+def version_minor = 4
+def version_patch = 1
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId package_name
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode version_major * 100 + version_minor * 10 + version_patch
+        versionName "${version_major}.${version_minor}.${version_patch}"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            buildConfigField 'String', 'FIREBASE_STORAGE_BUCKET', "\"gs://${firebase_project_id}.appspot.com\""
+            buildConfigField 'int', 'MESSAGE_LIMIT_COUNT', '15'
+            buildConfigField 'boolean', 'PERSISTENCE_ENABLED', 'false'
+            buildConfigField 'String', 'TWITTER_KEY', "\"${twitter_key}\""
+            buildConfigField 'String', 'TWITTER_SECRET', "\"${twitter_secret}\""
+            buildConfigField 'int', 'REALM_SCHEMA_VERSION', '0'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'FIREBASE_STORAGE_BUCKET', "\"gs://${firebase_project_id}.appspot.com\""
+            buildConfigField 'int', 'MESSAGE_LIMIT_COUNT', '50'
+            buildConfigField 'boolean', 'PERSISTENCE_ENABLED', 'true'
+            buildConfigField 'String', 'TWITTER_KEY', "\"${twitter_key}\""
+            buildConfigField 'String', 'TWITTER_SECRET', "\"${twitter_secret}\""
+            buildConfigField 'int', 'REALM_SCHEMA_VERSION', '0'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:${support_lib_version}"
+    compile "com.android.support:design:${support_lib_version}"
+    compile "com.android.support:support-vector-drawable:${support_lib_version}"
+    compile "com.android.support:animated-vector-drawable:${support_lib_version}"
+    compile "com.android.support:recyclerview-v7:${support_lib_version}"
+    compile "com.google.firebase:firebase-core:${firebase_lib_version}"
+    compile "com.google.firebase:firebase-database:${firebase_lib_version}"
+    compile "com.google.firebase:firebase-auth:${firebase_lib_version}"
+    compile "com.google.firebase:firebase-crash:${firebase_lib_version}"
+    compile "com.google.firebase:firebase-config:${firebase_lib_version}"
+    compile "com.google.firebase:firebase-storage:${firebase_lib_version}"
+    compile "com.google.android.gms:play-services-appindexing:${firebase_lib_version}"
+
+    // Dagger 2
+    apt "com.google.dagger:dagger-compiler:${dagger_version}"
+    compile "com.google.dagger:dagger:${dagger_version}"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // ButterKnife
+    compile "com.jakewharton:butterknife:${butter_knife_version}"
+    apt "com.jakewharton:butterknife-compiler:${butter_knife_version}"
+
+    // PermissionsDispatcher
+    compile "com.github.hotchemi:permissionsdispatcher:${permissions_dispatcher_version}"
+    apt "com.github.hotchemi:permissionsdispatcher-processor:${permissions_dispatcher_version}"
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
+    compile 'com.annimon:stream:1.1.1'
+    compile 'com.github.curioustechizen.android-ago:library:1.3.0'
+    compile 'com.nbsp:library:1.09'
+    compile 'com.squareup:otto:1.3.8'
+
+    compile('com.twitter.sdk.android:twitter:1.14.1@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
+        transitive = true;
+    }
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+}
+
+// THIS MUST BE AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'
