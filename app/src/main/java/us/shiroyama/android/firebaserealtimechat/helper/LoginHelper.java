@@ -64,6 +64,7 @@ public class LoginHelper {
         this.twitterLoginButton = twitterLoginButton;
         this.progressBar = progressBar;
 
+        // Twitter公式SDKのメソッド
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -72,6 +73,7 @@ public class LoginHelper {
 
                 TwitterSession session = result.data;
                 TwitterAuthToken token = session.getAuthToken();
+                // TODO　調査 settings.propertiesに指定した値使ってない？
                 AuthCredential credential = TwitterAuthProvider.getCredential(token.token, token.secret);
 
                 firebaseAuth.signInWithCredential(credential)

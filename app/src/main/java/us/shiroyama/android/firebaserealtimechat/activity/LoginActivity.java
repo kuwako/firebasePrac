@@ -57,19 +57,27 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+        // TODO 調査
+        // TODO コンポーネントとは
         getComponent().inject(this);
+
+        // TODO 調査
         analyticsHelper.logOpenScreen(TAG);
+
+        // TODO 調査。実際のログイン処理はこいつっぽい
         loginHelper.onCreate(twitterLoginButton, progressBar);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        // TODO 調査
         remoteConfigHelper.fetch();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO 調査
         loginHelper.onActivityResult(requestCode, resultCode, data);
     }
 
