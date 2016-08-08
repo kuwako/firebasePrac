@@ -95,7 +95,10 @@ public class MessageHelper {
                 }
             }
 
+            // TODO 調査
+            // startAt(lastTimestamp + 1) とすることで、一番最後に受診したもの以降にとドックメッセージのみを取得
             databaseReference.child(Message.PATH).orderByChild(Message.KEY_TIMESTAMP).startAt(lastTimestamp + 1).addChildEventListener(childAddListener);
+            // 削除用リスナ。上のもののみの場合、一括取得したメッセージからも削除でき、同期できるようにすべき
             databaseReference.child(Message.PATH).orderByChild(Message.KEY_TIMESTAMP).addChildEventListener(childRemoveListener);
         }
 
@@ -195,10 +198,14 @@ public class MessageHelper {
         onScrollListener = new ScrollEdgeListener((LinearLayoutManager) recyclerView.getLayoutManager()) {
             @Override
             public void onTop() {
+                // リストの最上部に到達
                 Log.d(TAG, "onTop");
+                // endAt(firstTimestamp - 1)で現在持っているメッセージで一番古いものを覚えておき、そのタイムスタンプを-1したところから取得するようにする
                 databaseReference.child(Message.PATH).orderByChild(Message.KEY_TIMESTAMP).endAt(firstTimestamp - 1).limitToLast(LIMIT).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        // TODO READ
+                        // 過去のメッセージを現在のメッセージリストにマージ
                         if (dataSnapshot.getChildrenCount() == 0) {
                             return;
                         }
