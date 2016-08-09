@@ -279,12 +279,14 @@ public class MessageHelper {
         DatabaseReference newMessage = databaseReference.child(Message.PATH).push();
 
         newMessage
+                // messageオブジェクトにタイムスタンプを入れずにsetValueする
                 .setValue(message)
                 .addOnSuccessListener(result -> {
                     Log.d(TAG, "try message send.");
                     newMessage
                             // update timestamp using server value
                             .updateChildren(new HashMap<String, Object>(1) {{
+                                // ここでタイムスタンプ更新
                                 put(Message.KEY_TIMESTAMP, ServerValue.TIMESTAMP);
                             }})
                             .addOnSuccessListener(command -> Log.d(TAG, "timestamp update ok."))
