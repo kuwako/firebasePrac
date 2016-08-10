@@ -44,6 +44,7 @@ public class MessageDeleteDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO どこで起動してる？
         if (getArguments() != null && !getArguments().containsKey(KEY_POSITION) && !getArguments().containsKey(KEY_TITLE_RES) && !getArguments().containsKey(KEY_MESSAGE_RES)) {
             throw new IllegalArgumentException("position must be supplied.");
         }
