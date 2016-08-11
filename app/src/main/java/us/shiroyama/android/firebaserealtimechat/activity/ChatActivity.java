@@ -48,7 +48,25 @@ import us.shiroyama.android.firebaserealtimechat.widget.ChatAdapter;
 /**
  * Chat Activity
  *
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
+ * DBのルール
+ * {
+ *   "rules": {
+ *     ".read": false,
+ *     ".write": false,
+ *     "users": {
+ *     ".read": "auth != null",
+ *     "$user_id": {
+ *       ".write": "auth != null && auth.uid === $user_id"
+ *     }
+ *   },
+ *   "messages": {
+ *     ".read": "auth != null",
+ *     ".indexOn": ["timestamp"],
+ *     "$message_id": {
+ *       ".write": "(auth != null && auth.uid === newData.child('senderUid').val()) || (auth != null && auth.uid === data.child('senderUid').val())"
+ *     }
+ *   }
+ * },
  */
 @RuntimePermissions
 public class ChatActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {

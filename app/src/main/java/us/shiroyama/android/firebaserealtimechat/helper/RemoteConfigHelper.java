@@ -42,6 +42,7 @@ public class RemoteConfigHelper {
     }
 
     public void setBackgroundColor(View target) {
+        // 背景色の取得
         String colorHex = firebaseRemoteConfig.getString("chat_bg_color");
         Log.d(TAG, "colorHex: " + colorHex);
         int color = Color.parseColor(colorHex);

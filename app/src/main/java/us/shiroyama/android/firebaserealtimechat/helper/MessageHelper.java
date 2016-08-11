@@ -39,7 +39,7 @@ import us.shiroyama.android.firebaserealtimechat.widget.ChatAdapter;
 import us.shiroyama.android.firebaserealtimechat.widget.ScrollEdgeListener;
 
 /**
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
+ *
  */
 @ActivityScope
 public class MessageHelper {
