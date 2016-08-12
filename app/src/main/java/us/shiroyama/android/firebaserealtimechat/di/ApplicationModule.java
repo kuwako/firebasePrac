@@ -24,9 +24,6 @@ import us.shiroyama.android.firebaserealtimechat.R;
 import us.shiroyama.android.firebaserealtimechat.realm.MyRealmMigration;
 import us.shiroyama.android.firebaserealtimechat.util.BusHolder;
 
-/**
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
- */
 @Module
 public class ApplicationModule {
     private Context applicationContext;

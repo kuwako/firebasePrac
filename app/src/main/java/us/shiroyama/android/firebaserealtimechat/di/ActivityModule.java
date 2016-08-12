@@ -7,9 +7,6 @@ import dagger.Module;
 import dagger.Provides;
 import us.shiroyama.android.firebaserealtimechat.di.scope.ActivityScope;
 
-/**
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
- */
 @Module
 public class ActivityModule {
     private AppCompatActivity activity;

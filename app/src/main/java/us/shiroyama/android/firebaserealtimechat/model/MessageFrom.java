@@ -3,8 +3,9 @@ package us.shiroyama.android.firebaserealtimechat.model;
 /**
  * Message From
  *
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
  */
+
+// TODO Typeは何につかっているのか調査
 public enum MessageFrom {
     ME(1), OTHERS(1 << 1);
 

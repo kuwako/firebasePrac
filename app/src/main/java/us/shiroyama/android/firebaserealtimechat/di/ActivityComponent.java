@@ -5,9 +5,7 @@ import us.shiroyama.android.firebaserealtimechat.activity.ChatActivity;
 import us.shiroyama.android.firebaserealtimechat.activity.LoginActivity;
 import us.shiroyama.android.firebaserealtimechat.di.scope.ActivityScope;
 
-/**
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
- */
+// TODO もう少しDIの理解を深める
 @ActivityScope
 @Subcomponent(modules = ActivityModule.class)
 public interface ActivityComponent {

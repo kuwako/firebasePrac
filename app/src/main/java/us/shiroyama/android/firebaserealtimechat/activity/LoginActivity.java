@@ -21,7 +21,6 @@ import us.shiroyama.android.firebaserealtimechat.helper.RemoteConfigHelper;
 /**
  * Login Activity
  *
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
  */
 public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -57,8 +56,7 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        // TODO 調査
-        // TODO コンポーネントとは
+        // TODO DIについて勉強 & ソースの理解
         getComponent().inject(this);
 
         analyticsHelper.logOpenScreen(TAG);
@@ -69,6 +67,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // 背景色の取得
         remoteConfigHelper.fetch();
     }
 

@@ -11,9 +11,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
- */
 @Singleton
 public class RemoteConfigHelper {
     private static final String TAG = RemoteConfigHelper.class.getSimpleName();
@@ -43,6 +40,7 @@ public class RemoteConfigHelper {
 
     public void setBackgroundColor(View target) {
         // 背景色の取得
+        // Tips: RemoteConfigは右上の保存ボタンを押さないと繁栄されない
         String colorHex = firebaseRemoteConfig.getString("chat_bg_color");
         Log.d(TAG, "colorHex: " + colorHex);
         int color = Color.parseColor(colorHex);
