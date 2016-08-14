@@ -5,7 +5,8 @@ import us.shiroyama.android.firebaserealtimechat.activity.ChatActivity;
 import us.shiroyama.android.firebaserealtimechat.activity.LoginActivity;
 import us.shiroyama.android.firebaserealtimechat.di.scope.ActivityScope;
 
-// TODO もう少しDIの理解を深める
+// どうやらDagger側がこのクラスをインプリメントしたActivityComponentImplクラスをビルド時に作成しているっぽい。
+// 要調査
 @ActivityScope
 @Subcomponent(modules = ActivityModule.class)
 public interface ActivityComponent {
