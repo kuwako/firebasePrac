@@ -29,6 +29,7 @@ public class StorageHelper {
 
     private final Bus bus;
 
+    // TODO コンストラクタに@Injectをつけることで引数に合わせて必要なインスタンスを生成して注入してくれる？
     @Inject
     public StorageHelper(AppCompatActivity activity, StorageReference storageReference, Bus bus) {
         this.activity = activity;

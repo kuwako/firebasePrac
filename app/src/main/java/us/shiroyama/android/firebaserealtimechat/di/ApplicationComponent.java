@@ -4,9 +4,9 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
- * @author Fumihiko Shiroyama (fu.shiroyama@gmail.com)
- */
+// 依存関係グラフの頂点??
+// 実態クラスがDaggerApplicationComponentという名前で生成される。
+// 生成されたクラス実態クラスがBuilderクラスを持っていて、build()すればinterfaceで用意したメソッドが注入されたインスタンスを返してくれる。
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
