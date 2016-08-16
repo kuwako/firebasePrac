@@ -30,6 +30,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // あ、ここでbuildしてるのね。
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
