@@ -73,7 +73,6 @@ public class LoginHelper {
 
                 TwitterSession session = result.data;
                 TwitterAuthToken token = session.getAuthToken();
-                // TODO　調査 settings.propertiesに指定した値使ってない？
                 AuthCredential credential = TwitterAuthProvider.getCredential(token.token, token.secret);
 
                 firebaseAuth.signInWithCredential(credential)

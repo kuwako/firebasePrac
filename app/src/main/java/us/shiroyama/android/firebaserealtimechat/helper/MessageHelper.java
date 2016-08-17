@@ -95,7 +95,6 @@ public class MessageHelper {
                 }
             }
 
-            // TODO 調査
             // startAt(lastTimestamp + 1) とすることで、一番最後に受診したもの以降にとドックメッセージのみを取得
             databaseReference.child(Message.PATH).orderByChild(Message.KEY_TIMESTAMP).startAt(lastTimestamp + 1).addChildEventListener(childAddListener);
             // 削除用リスナ。上のもののみの場合、一括取得したメッセージからも削除でき、同期できるようにすべき
