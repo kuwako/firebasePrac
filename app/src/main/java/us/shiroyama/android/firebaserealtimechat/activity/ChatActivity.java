@@ -264,6 +264,7 @@ public class ChatActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
     }
 
+    // eventbusでアップロードの成功を監視
     @Subscribe
     public void onUploadResult(MessageHelper.ImageUploadResultEvent event) {
         if (!event.success) {

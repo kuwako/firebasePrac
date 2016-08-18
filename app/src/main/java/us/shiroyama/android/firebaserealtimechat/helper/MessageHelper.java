@@ -255,8 +255,11 @@ public class MessageHelper {
             messages.clear();
             chatAdapter.notifyDataSetChanged();
         }
+
+        // TODO onRefreshでなぜこの辺削除?
         databaseReference.child(Message.PATH).removeEventListener(childAddListener);
         databaseReference.child(Message.PATH).removeEventListener(childRemoveListener);
+        // ここでデータ再セット？
         databaseReference.child(Message.PATH).orderByChild(Message.KEY_TIMESTAMP).limitToLast(LIMIT).addListenerForSingleValueEvent(singleShotListener);
     }
 
