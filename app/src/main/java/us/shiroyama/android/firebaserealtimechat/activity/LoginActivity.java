@@ -56,7 +56,6 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        // TODO DIについて勉強 & ソースの理解
         getComponent().inject(this);
 
         analyticsHelper.logOpenScreen(TAG);

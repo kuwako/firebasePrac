@@ -30,7 +30,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // あ、ここでbuildしてるのね。
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
@@ -46,6 +45,8 @@ public class MyApplication extends Application {
             FirebaseDatabase.getInstance().setPersistenceEnabled(BuildConfig.PERSISTENCE_ENABLED);
         }
 
+        // http://techblog.timers-inc.com/entry/2016/06/27/121939
+        // 日付時刻を使うためのクラスらしい。次回は使う
         AndroidThreeTen.init(this);
     }
 

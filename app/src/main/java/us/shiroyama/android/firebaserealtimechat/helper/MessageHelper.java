@@ -203,7 +203,6 @@ public class MessageHelper {
                 databaseReference.child(Message.PATH).orderByChild(Message.KEY_TIMESTAMP).endAt(firstTimestamp - 1).limitToLast(LIMIT).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // TODO READ
                         // 過去のメッセージを現在のメッセージリストにマージ
                         if (dataSnapshot.getChildrenCount() == 0) {
                             return;
@@ -256,7 +255,6 @@ public class MessageHelper {
             chatAdapter.notifyDataSetChanged();
         }
 
-        // TODO onRefreshでなぜこの辺削除?
         databaseReference.child(Message.PATH).removeEventListener(childAddListener);
         databaseReference.child(Message.PATH).removeEventListener(childRemoveListener);
         // ここでデータ再セット？
