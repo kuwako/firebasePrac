@@ -5,7 +5,6 @@ package us.shiroyama.android.firebaserealtimechat.model;
  *
  */
 
-// TODO Typeは何につかっているのか調査
 public enum MessageType {
     // TODO この表現がわからない
     NORMAL(1 << 7), IMAGE(1 << 8);

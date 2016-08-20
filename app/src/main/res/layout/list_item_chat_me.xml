@@ -9,6 +9,7 @@
     android:paddingRight="8dp"
     android:paddingTop="8dp">
 
+    <!--TODO 調査-->
     <com.github.curioustechizen.ago.RelativeTimeTextView
         android:id="@+id/timestamp"
         android:layout_width="wrap_content"
