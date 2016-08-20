@@ -52,6 +52,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     public ChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ChatViewHolder viewHolder;
 
+        // ここで新しくメッセージができた際に追加するview等を調整
         if (viewType == (MessageType.NORMAL.getFlag() | MessageFrom.ME.getFlag())) {
             View itemView = layoutInflater.inflate(R.layout.list_item_chat_me, parent, false);
             viewHolder = new ChatViewHolder.MyMessage(itemView, activity, databaseReference);
